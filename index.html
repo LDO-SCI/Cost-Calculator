@@ -138,8 +138,18 @@
                 output += `<li>English → ${lang.value.charAt(0).toUpperCase() + lang.value.slice(1)}: £${cost.toFixed(2)}</li>`;
             });
 
-            output += `</ul><h3>Grand Total: £${grandTotal.toFixed(2)}</h3>`;
-            resultsDiv.innerHTML = output;
+            const vat = grandTotal * 0.20;
+            const totalWithVAT = grandTotal + vat;
+            const exchangeRate = 1.25;
+            const totalUSD = totalWithVAT * exchangeRate;
+
+    output += `</ul>
+        <h3>Subtotal: £${grandTotal.toFixed(2)}</h3>
+        <h3>VAT (20%): £${vat.toFixed(2)}</h3>
+        <h3>Total (GBP): £${totalWithVAT.toFixed(2)}</h3>
+        <h3>Total (USD): $${totalUSD.toFixed(2)}</h3>`;
+    
+    resultsDiv.innerHTML = output;
         }
     </script>
 </body>
